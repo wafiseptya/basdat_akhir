@@ -13,10 +13,12 @@ class CreatePenjabatPembuatKomitmenTable extends Migration
      */
     public function up()
     {
-        Schema::create('penjabat_pembuat_komitmen', function (Blueprint $table) {
+        Schema::create('pejabat_pembuat_komitmen', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('pegawai_id');
             $table->foreign('pegawai_id')->references('id')->on('pegawai');
+            $table->unsignedBigInteger('updated_by');
+            $table->foreign('updated_by')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreatePenjabatPembuatKomitmenTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penjabat_pembuat_komitmen');
+        Schema::dropIfExists('pejabat_pembuat_komitmen');
     }
 }
